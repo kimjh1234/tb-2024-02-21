@@ -11,13 +11,13 @@ class App {
 
         System.out.println("프로그램 실행");
         System.out.println("== 명언 앱 ==");
-        for ( ; ; ){
+        for (; ; ) {
             System.out.print("명령 ) ");
             Scanner s = new Scanner(System.in);
             String 명령 = s.nextLine();
             if (명령.equals("종료")) {
                 break;
-            } else if (명령.equals("등록")){
+            } else if (명령.equals("등록")) {
                 System.out.print("명언 : ");
                 String 명언 = s.nextLine();
                 System.out.print("작가 : ");
@@ -25,8 +25,13 @@ class App {
                 명언_목록.add(명언);
                 작가_목록.add(작가);
                 System.out.println(명언_목록.lastIndexOf(명언) + 1 + "번 명언이 등록되었습니다.");
+            } else if (명령.equals("목록")) {
+                System.out.println("번호 / 작가 / 명언");
+                System.out.println("-------------------");
+                for (int i = 0; i < 명언_목록.size(); i++) {
+                    System.out.println(i + 1 + " / " + 작가_목록.get(i) + " / " + 명언_목록.get(i));
+                }
             }
         }
-
     }
 }
