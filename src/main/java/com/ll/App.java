@@ -1,9 +1,14 @@
 package com.ll;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 class App {
     void run() {
+        List<String> 명언_목록 = new ArrayList<>();
+        List<String> 작가_목록 = new ArrayList<>();
+
         System.out.println("프로그램 실행");
         System.out.println("== 명언 앱 ==");
         for ( ; ; ){
@@ -17,6 +22,9 @@ class App {
                 String 명언 = s.nextLine();
                 System.out.print("작가 : ");
                 String 작가 = s.nextLine();
+                명언_목록.add(명언);
+                작가_목록.add(작가);
+                System.out.println(명언_목록.lastIndexOf(명언) + 1 + "번 명언이 등록되었습니다.");
             }
         }
 
