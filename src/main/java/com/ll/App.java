@@ -57,7 +57,19 @@ class App {
                         }
                     }
                 } else if (etc[0].equals("수정")) {
-
+                    for (int i = 0; i <= quotations.size(); i++) {
+                        if (i == quotations.size()) {
+                            System.out.println(num + "번 명언은 존재하지 않습니다.");
+                            break;
+                        }
+                        if (quotations.get(i).id == num) {
+                            System.out.printf("명언(기존) : %s\n명언 : ", quotations.get(i).content);
+                            quotations.get(i).content = scanner.nextLine();
+                            System.out.printf("작가(기존) : %s\n작가 : ", quotations.get(i).authorName);
+                            quotations.get(i).authorName = scanner.nextLine();
+                            break;
+                        }
+                    }
                 }
             }
         }
