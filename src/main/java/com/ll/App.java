@@ -44,9 +44,14 @@ class App {
                 }
             } else {
                 String[] etc = cmd.split("\\?id=");
+                int num = Integer.parseInt(etc[1]);
                 if (etc[0].equals("삭제")) {
                     for (int i = 0; i <= quotations.size(); i++) {
-                        if (quotations.get(i).id == Integer.parseInt(etc[1])) {
+                        if (i == quotations.size()) {
+                            System.out.println(num + "번 명언은 존재하지 않습니다.");
+                            break;
+                        }
+                        if (quotations.get(i).id == num) {
                             quotations.remove(i);
                             break;
                         }
