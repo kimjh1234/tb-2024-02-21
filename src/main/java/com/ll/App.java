@@ -6,30 +6,53 @@ import java.util.Scanner;
 
 class App {
     void run() {
-        List<String> 명언_목록 = new ArrayList<>();
-        List<String> 작가_목록 = new ArrayList<>();
-
-        System.out.println("프로그램 실행");
         System.out.println("== 명언 앱 ==");
-        for (; ; ) {
-            System.out.print("명령 ) ");
-            Scanner s = new Scanner(System.in);
-            String 명령 = s.nextLine();
-            if (명령.equals("종료")) {
+        int lastQuotationid = 0;
+
+        List<Quotation> quotations = new ArrayList<>();
+        while (true) {
+            System.out.print("명령) ");
+
+            Scanner scanner = new Scanner(System.in);
+            String cmd = scanner.nextLine();
+
+            if (cmd.equals("종료")) {
                 break;
-            } else if (명령.equals("등록")) {
+            } else if (cmd.equals("등록")) {
                 System.out.print("명언 : ");
-                String 명언 = s.nextLine();
+                String content = scanner.nextLine();
+
                 System.out.print("작가 : ");
-                String 작가 = s.nextLine();
-                명언_목록.add(명언);
-                작가_목록.add(작가);
-                System.out.println(명언_목록.lastIndexOf(명언) + 1 + "번 명언이 등록되었습니다.");
-            } else if (명령.equals("목록")) {
+                String authorName = scanner.nextLine();
+                lastQuotationid++;
+                int id = lastQuotationid;
+
+                Quotation quotation = new Quotation(id, content, authorName);
+                quotations.add(quotation);
+
+                System.out.printf("%d번 명언이 등록되었습니다.\n", lastQuotationid);
+            } else if (cmd.equals("목록")) {
                 System.out.println("번호 / 작가 / 명언");
-                System.out.println("-------------------");
-                for (int i = 0; i < 명언_목록.size(); i++) {
-                    System.out.println(i + 1 + " / " + 작가_목록.get(i) + " / " + 명언_목록.get(i));
+
+                System.out.println("--------------------");
+
+                if (quotations.isEmpty())
+                    System.out.println("등록된 명언이 없습니다.");
+
+                for (int i = quotations.size() - 1; i >= 0; i--) {
+                    System.out.println(quotations.get(i).id + " / " + quotations.get(i).authorName + " / " + quotations.get(i).content);
+                }
+            } else {
+                String[] etc = cmd.split("\\?id=");
+                if (etc[0].equals("삭제")) {
+                    for (int i = 0; i <= quotations.size(); i++) {
+                        if (quotations.get(i).id == Integer.parseInt(etc[1])) {
+                            quotations.remove(i);
+                            break;
+                        }
+                    }
+                } else if (etc[0].equals("수정")) {
+
                 }
             }
         }
