@@ -45,31 +45,28 @@ class App {
             } else {
                 String[] etc = cmd.split("\\?id=");
                 int num = Integer.parseInt(etc[1]);
-                if (etc[0].equals("삭제")) {
-                    for (int i = 0; i <= quotations.size(); i++) {
-                        if (i == quotations.size()) {
-                            System.out.println(num + "번 명언은 존재하지 않습니다.");
-                            break;
+                try {
+                    if (etc[0].equals("삭제")) {
+                        for (int i = 0; i <= quotations.size(); i++) {
+                            if (quotations.get(i).id == num) {
+                                quotations.remove(i);
+                                System.out.println(num + "번 명언이 삭제되었습니다.");
+                                break;
+                            }
                         }
-                        if (quotations.get(i).id == num) {
-                            quotations.remove(i);
-                            break;
-                        }
-                    }
-                } else if (etc[0].equals("수정")) {
-                    for (int i = 0; i <= quotations.size(); i++) {
-                        if (i == quotations.size()) {
-                            System.out.println(num + "번 명언은 존재하지 않습니다.");
-                            break;
-                        }
-                        if (quotations.get(i).id == num) {
-                            System.out.printf("명언(기존) : %s\n명언 : ", quotations.get(i).content);
-                            quotations.get(i).content = scanner.nextLine();
-                            System.out.printf("작가(기존) : %s\n작가 : ", quotations.get(i).authorName);
-                            quotations.get(i).authorName = scanner.nextLine();
-                            break;
+                    } else if (etc[0].equals("수정")) {
+                        for (int i = 0; i <= quotations.size(); i++) {
+                            if (quotations.get(i).id == num) {
+                                System.out.printf("명언(기존) : %s\n명언 : ", quotations.get(i).content);
+                                quotations.get(i).content = scanner.nextLine();
+                                System.out.printf("작가(기존) : %s\n작가 : ", quotations.get(i).authorName);
+                                quotations.get(i).authorName = scanner.nextLine();
+                                break;
+                            }
                         }
                     }
+                } catch (Exception e) {
+                    System.out.println(num + "번 명언은 존재하지 않습니다.");
                 }
             }
         }
