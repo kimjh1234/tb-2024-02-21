@@ -270,6 +270,6 @@ class App {
     void actionSearchEnd() {
         System.out.println("검색을 종료합니다.");
         System.out.println("[ 등록 / 목록 / 삭제 / 수정 / 검색 / 종료 ] 중 원하시는 메뉴를 입력해주세요.");
-
+gi
     }
 }
